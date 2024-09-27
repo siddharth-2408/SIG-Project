@@ -7,6 +7,8 @@ package model;
 
 import db.DBConnector;
 import dto.AdminDTO;
+import dto.LoginDTO;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,6 +18,34 @@ import java.sql.Statement;
  */
 public class StudentAuthenticator 
 {
+    public boolean isStudent(LoginDTO user)
+    {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        
+        if(username!=null && password!=null && !username.trim().equals(""))
+        {
+            Statement st = DBConnector.getStatement();
+            try
+            {
+                String query = "SELECT student_password FROM student where student_id='"+username+"'";
+                System.out.println(query);
+            
+                ResultSet rs = st.executeQuery(query);
+                if(rs.next())
+                {
+                    String tablePassword= rs.getString(1);
+                    return password.equals(tablePassword);
+                }
+            }
+            catch(SQLException e)
+            {
+                System.out.println(e);
+            }
+        }
+        return false;
+
+    }
     public boolean deleteStudent(String fid)
     {
         try

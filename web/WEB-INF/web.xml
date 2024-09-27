@@ -24,6 +24,14 @@
         <servlet-name>UpdateStudent</servlet-name>
         <servlet-class>controller.UpdateStudent</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StudentLoginChecker</servlet-name>
+        <servlet-class>controller.StudentLoginChecker</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FacultyLoginChecker</servlet-name>
+        <servlet-class>controller.FacultyLoginChecker</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminChecker</servlet-name>
         <url-pattern>/AdminChecker</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>UpdateStudent</servlet-name>
         <url-pattern>/UpdateStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentLoginChecker</servlet-name>
+        <url-pattern>/StudentLoginChecker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FacultyLoginChecker</servlet-name>
+        <url-pattern>/FacultyLoginChecker</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

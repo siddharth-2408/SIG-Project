@@ -3,9 +3,11 @@ package model;
 import dao.FacultyDetails;
 import db.DBConnector;
 import dto.AdminDTO;
+import dto.LoginDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,6 +17,34 @@ import java.sql.Statement;
  */
 public class FacultyAuthenticator 
 {
+    public boolean isLogin(LoginDTO user)
+    {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        
+        if(username!=null && password!=null && !username.trim().equals(""))
+        {
+            Statement st = DBConnector.getStatement();
+            try
+            {
+                String query = "SELECT faculty_password,role FROM faculty where faculty_id='"+username+"'";
+                System.out.println(query);
+            
+                ResultSet rs = st.executeQuery(query);
+                if(rs.next())
+                {
+                    String tablePassword= rs.getString(1);
+                    user.setRole(rs.getString(2));
+                    return password.equals(tablePassword);
+                }
+            }
+            catch(SQLException e)
+            {
+                System.out.println(e);
+            }
+        }
+        return false;
+    }
     public boolean isFaculty(AdminDTO user)
         {
             Connection con = DBConnector.getConnection();
