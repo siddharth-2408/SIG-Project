@@ -20,6 +20,10 @@
         <servlet-name>AddStudentChecker</servlet-name>
         <servlet-class>controller.AddStudentChecker</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateStudent</servlet-name>
+        <servlet-class>controller.UpdateStudent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminChecker</servlet-name>
         <url-pattern>/AdminChecker</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AddStudentChecker</servlet-name>
         <url-pattern>/AddStudentChecker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStudent</servlet-name>
+        <url-pattern>/UpdateStudent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

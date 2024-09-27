@@ -93,7 +93,7 @@ public class FacultyAuthenticator
         try
         {
             Statement st = DBConnector.getStatement();
-            String query = "DELETE FROM faculty where faculty_id='"+fid+"'";
+            String query = "DELETE FROM faculty WHERE faculty_id='"+fid+"'";
             int i = st.executeUpdate(query);
             
             if(i>0)
@@ -113,7 +113,7 @@ public class FacultyAuthenticator
         try
         {
             Statement st = DBConnector.getStatement();
-            String query = "UPDATE faculty SET faculty_name = '"+user.getName()+"', faculty_dept = '"+user.getDept()+"', faculty_contact = '"+user.getContact()+"', faculty_city = '"+user.getCity()+"', faculty_address = '"+user.getAddress()+"' where faculty_id = '"+user.getId()+"';";
+            String query = "UPDATE faculty SET faculty_name = '"+user.getName()+"', faculty_dept = '"+user.getDept()+"', faculty_contact = '"+user.getContact()+"', faculty_city = '"+user.getCity()+"', faculty_address = '"+user.getAddress()+"' WHERE faculty_id = '"+user.getId()+"';";
             System.out.println("Update Faculty Query = "+query);
             int i = st.executeUpdate(query);
             if(i>0)
