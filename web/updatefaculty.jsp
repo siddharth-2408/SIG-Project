@@ -114,7 +114,7 @@
             {
                 FacultyDetails fDAO = new FacultyDetails();
                 AdminDTO faculty =  fDAO.getUserDetail(facultyId);
-                if(faculty == null)
+                if(faculty.getName() == null)
                 {
                     %>
                     <h2>No Records Found for <%=facultyId%></h2>        

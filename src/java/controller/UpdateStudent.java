@@ -33,25 +33,32 @@ public class UpdateStudent extends HttpServlet
         String studentCity = request.getParameter("student_city");
         String studentDept = request.getParameter("student_dept");
         //System.out.println(facultyID +" "+facultyName+" "+facultyCity+" "+facultyAddress+" "+facultyContact+" "+facultyDept);
-        
-        AdminDTO fdto = new AdminDTO();
-        fdto.setId(studentID);
-        fdto.setName(studentName);
-        fdto.setAddress(studentAddress);
-        fdto.setContact(studentContact);
-        fdto.setCity(studentCity);
-        fdto.setDept(studentDept);
-        
-        StudentAuthenticator fa = new StudentAuthenticator();
-        boolean update = fa.updateStudent(fdto);
-        
-        if(update)
+        if(studentName.trim().equals("") | studentAddress.trim().equals("") | studentContact.trim().equals("") | studentCity.trim().equals("") | studentDept.trim().equals(""))
+        //if(studentName.equals("") | studentAddress.equals("") | studentContact.equals("") | studentCity.equals("") | studentDept.equals(""))
         {
-            response.sendRedirect("updatestudent.jsp");
+            response.sendRedirect("adminHome.html");
         }
         else
         {
-            response.sendRedirect("adminHome.html");
+            AdminDTO fdto = new AdminDTO();
+            fdto.setId(studentID);
+            fdto.setName(studentName);
+            fdto.setAddress(studentAddress);
+            fdto.setContact(studentContact);
+            fdto.setCity(studentCity);
+            fdto.setDept(studentDept);
+
+            StudentAuthenticator fa = new StudentAuthenticator();
+            boolean update = fa.updateStudent(fdto);
+
+            if(update)
+            {
+                response.sendRedirect("updatestudent.jsp");
+            }
+            else
+            {
+                response.sendRedirect("adminHome.html");
+            }
         }
     }
 }

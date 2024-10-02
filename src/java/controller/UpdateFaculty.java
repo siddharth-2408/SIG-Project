@@ -34,25 +34,32 @@ public class UpdateFaculty extends HttpServlet
         String facultyCity = request.getParameter("facultycity");
         String facultyDept = request.getParameter("facultydept");
         //System.out.println(facultyID +" "+facultyName+" "+facultyCity+" "+facultyAddress+" "+facultyContact+" "+facultyDept);
-        
-        AdminDTO fdto = new AdminDTO();
-        fdto.setId(facultyID);
-        fdto.setName(facultyName);
-        fdto.setAddress(facultyAddress);
-        fdto.setContact(facultyContact);
-        fdto.setCity(facultyCity);
-        fdto.setDept(facultyDept);
-        
-        FacultyAuthenticator fa = new FacultyAuthenticator();
-        boolean update = fa.updateFaculty(fdto);
-        
-        if(update)
-        {
-            response.sendRedirect("updatefaculty.jsp");
-        }
-        else
+        if(facultyName.trim().equals("") | facultyAddress.trim().equals("") | facultyContact.trim().equals("") | facultyCity.trim().equals("") | facultyDept.trim().equals(""))
+        //if(studentName.equals("") | studentAddress.equals("") | studentContact.equals("") | studentCity.equals("") | studentDept.equals(""))
         {
             response.sendRedirect("adminHome.html");
         }
+        else
+        {
+            AdminDTO fdto = new AdminDTO();
+            fdto.setId(facultyID);
+            fdto.setName(facultyName);
+            fdto.setAddress(facultyAddress);
+            fdto.setContact(facultyContact);
+            fdto.setCity(facultyCity);
+            fdto.setDept(facultyDept);
+
+            FacultyAuthenticator fa = new FacultyAuthenticator();
+            boolean update = fa.updateFaculty(fdto);
+
+            if(update)
+            {
+                response.sendRedirect("updatefaculty.jsp");
+            }
+            else
+            {
+                response.sendRedirect("adminHome.html");
+            }
+        }    
     }
 }
